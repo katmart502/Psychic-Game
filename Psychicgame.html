@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+
+
+<title>Psychic Game </title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body> 
+
+
+
+
+ <h1> Guess What Letter I'm thinking of?</h1>
+ <div class="text">
+ <!-- Create Random Letter function-->
+
+
+		<table class="table">
+			<td><strong><h4>Psychic Game</td></strong></h4>
+
+			<tbody>
+				<tr>
+					<td>Wins:</td>
+					<td>Losses:</td>
+					
+				</tr>
+
+				<tr>
+					<td><span id="wins"></span></td>
+					<td><span id="loses"></span></td>
+					
+				</tr>
+
+
+			</tbody>
+
+
+		</table>
+
+
+	</div>
+	<div class="row">
+			<div class="col-md-2 text-center"></div>
+			<div class="col-md-3 text-left">Guesses Left: <span id="userChoice"></span></div>
+			<div class="col-md-2 text-center"></div>
+			<div class="col-md-3 text-center">Your Guesses So far: <span id="computerChoice"></span></div>
+
+			<div class="col-md-2 text-center"></div>
+		</div>
+		
+		<p>click button to guess letter</p>
+		<button onclick= "GuessFunction()"> Try it </button>
+
+		<p id="game"></p>
+					
+<script type="text/javascript">
+// create function to get game to operate
+
+function GuessFunction() {
+	var wins ="wins"
+	var losses="losses"
+	var i= 0;
+	var i="abcdefghijklmnopqrstuvwxyz"
+
+
+}
+do {
+	loses+= "wins"+i; i++;
+
+}
+	while (i<10);
+		letters+="losses"+i; i++;
+
+document.getElementById("game").innerhtml=text;
+
+
+</script>
+</body>
+</html>
