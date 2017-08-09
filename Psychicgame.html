@@ -33,8 +33,8 @@
 				</tr>
 
 				<tr>
-					<td><span id="wins"></span></td>
-					<td><span id="loses"></span></td>
+					<td><span id="wins">0</span></td>
+					<td><span id="loses">0</span></td>
 					
 				</tr>
 
@@ -55,31 +55,95 @@
 			<div class="col-md-2 text-center"></div>
 		</div>
 		
-		<p>click button to guess letter</p>
-		<button onclick= "GuessFunction()"> Try it </button>
 
 		<p id="game"></p>
 					
 <script type="text/javascript">
-// create function to get game to operate
+// create a list of choices
+ var Letters= ["abcdefghijklmnopqrstuvwxyz"]; 
 
-function GuessFunction() {
-	var wins ="wins"
-	var losses="losses"
-	var i= 0;
-	var i="abcdefghijklmnopqrstuvwxyz"
+// next I will create an empty array so the list has a place to go
+// name the array the guess the letter because that is what the user will see
+var GuessedLetter=[];
+
+// # of times user has failed to guess the letter correctly. 
+// This is yet to be determined; don't leave it undefined because the computer thinks it means it won't ever be defined in this game. Which isn't the case. So define it "null" The user must input their guess
+var LettersLeft=null;
+
+// It times to set the length of the game 
+var GuessesSoFar= 6;
+
+// start the game with no wins, no losses 
+var wins= 0;
+var losses=0;
+
+// It's time to declare the variables of the function (actions)
 
 
-}
-do {
-	loses+= "wins"+i; i++;
+var updatedGuessLeft() = function(){
+	document("#guesses-left").innerHTML = guessesLeft;
+// this is how you assign an html element a function. You first must grab it 
+};
 
-}
-	while (i<10);
-		letters+="losses"+i; i++;
+// create a 2nd function to generate the random letter from the list we created. I want the entire list so it needs to be explained (length) I am still grabing from html. 
 
-document.getElementById("game").innerhtml=text;
+letterToGuess = letters[Math.floor(Math.random() * letters.length)];
 
+ };
+
+// the last function will keep track of the user's guesses and display them with comas,
+
+document("#guesses-so-far").innerHTML = guessedLetters.join(", ");
+  
+  };
+ // It's time to create the reset without refresh feature. 
+ var reset = function() {
+      guessesLeft = 6;
+      guessedLetters = [];
+      updateLetterToGuess();
+      updateGuessesLeft();
+      updateGuessesSoFar();
+    };
+
+
+  // for the game to start at zero it must be displayed that way. this ensures the display will be empty when the user first loads the page.
+    updateLetterToGuess();
+    updateGuessesLeft();
+
+    // This function  is how the keyboard clicks will be stored. Display the attempted letters ( how the user will keep track of the letters guesses) 
+    document.onkeyup = function(event) {
+      
+      // this step will to reduce the guesses tally by one
+      guessesLeft--;
+      // Lowercase the letter "event" will grab the event which stored the letters the user chose and display the letters in lower case form
+      var letter = String.fromCharCode(event.keyCode).toLowerCase();
+
+      // Now i must add the guess to the guessedLetters array
+      // in order to do that bring the html element to function guessedletters give it the function push so it pushes the html element "letter" (in html form) and displays it to the user
+      guessedLetters.push(letter);
+      // call the function so that they run the update functions
+
+      updateGuessesLeft();
+      updateGuessesSoFar();
+
+      // if states run until something is false. Create the statement to see if something we created is true. If it is the game will work
+      if (letter === letterToGuess) {
+        // If something is true this step will automatically update the HTML to display the win.
+        wins++;
+        document.("#wins").innerHTML = wins;
+        // Then the game needs to start over because the user has 6 rounds. In order to reset without refreshing I need to add the function.
+        reset();
+      }
+      // create the possiblity of :if the user is out of guessing attempts.
+      if (guessesLeft === 0) {
+        // if the user is out of attempts this means the user lost the game. The programmer needs to make sure it is displayed to the user they lost. which is why I pulled the html element to display the loss in plain text.
+        losses++;
+        document.("#losses").innerHTML = losses;
+        // After the user loses the game. It will reset and they play again or not. I will not diplay try again function with a button it must be implied.
+        reset();
+      }
+    };
+  
 
 </script>
 </body>
