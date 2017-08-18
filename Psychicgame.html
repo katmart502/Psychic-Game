@@ -34,7 +34,7 @@
 
 				<tr>
 					<td><span id="wins">0</span></td>
-					<td><span id="loses">0</span></td>
+					<td><span id="losses">0</span></td>
 					
 				</tr>
 
@@ -48,7 +48,7 @@
 	</div>
 	<div class="row">
 			<div class="col-md-2 text-center"></div>
-			<div class="col-md-3 text-left">Guesses Left <span id="GuessesLeft"></span></div>
+			<div class="col-md-3 text-left">Guesses Left: <span id="GuessesLeft"></span></div>
 			<div class="col-md-2 text-center"></div>
 			<div class="col-md-3 text-center">Your Guesses So far: <span id="GuessesSoFar"></span></div>
 
@@ -64,25 +64,26 @@
 
 // next I will create an empty array so the list has a place to go
 // name the array the guess the letter because that is what the user will see
-var GuessedLetter=[];
+var guessedLetters=[];
 
 // # of times user has failed to guess the letter correctly. 
 // This is yet to be determined; don't leave it undefined because the computer thinks it means it won't ever be defined in this game. Which isn't the case. So define it "null" The user must input their guess
-var LettersLeft=null;
+var LetterstoGuess=null;
 
 // It times to set the length of the game 
-var GuessesSoFar= 6;
+var GuessesSoFar= 0;
 
 // start the game with no wins, no losses 
 var wins= 0;
 var losses=0;
+var guessesLeft=6;
 
 // It's time to declare the variables of the function (actions)
 
 
 var updateGuessesLeft = function()
 {
-	document.querySelector ("GuessesLeft").innerHTML = guesses Left;
+	document.querySelector ("#GuessesLeft").innerHTML = guessesLeft;
 // this is how you assign an html element a function. You first must grab it 
 };
 
@@ -97,9 +98,9 @@ letterToGuess = Letters[Math.floor(Math.random() * Letters.length)];
 
 // the last function will keep track of the user's guesses and display them with comas,
 
-var updateGuessesSofar = function()
+var updateGuessesSoFar = function()
 {
-document.queryselector("#GuessesSofar").innerHTML = guessedLetters.join(", ");
+document.querySelector("#GuessesSoFar").innerHTML = guessedLetters.join(", ");
   
   };
  // It's time to create the reset without refresh feature. 
@@ -136,7 +137,7 @@ document.queryselector("#GuessesSofar").innerHTML = guessedLetters.join(", ");
       if (letter === letterToGuess) {
         // If something is true this step will automatically update the HTML to display the win.
         wins++;
-        document.queryselector("#wins").innerHTML = wins;
+        document.querySelector("#wins").innerHTML = wins;
         // Then the game needs to start over because the user has 6 rounds. In order to reset without refreshing I need to add the function.
         reset();
       }
@@ -144,7 +145,7 @@ document.queryselector("#GuessesSofar").innerHTML = guessedLetters.join(", ");
       if (guessesLeft === 0) {
         // if the user is out of attempts this means the user lost the game. The programmer needs to make sure it is displayed to the user they lost. which is why I pulled the html element to display the loss in plain text.
         losses++;
-        document.queryselector("#losses").innerHTML = losses;
+        document.querySelector("#losses").innerHTML = losses;
         // After the user loses the game. It will reset and they play again or not. I will not diplay try again function with a button it must be implied.
         reset();
       }
